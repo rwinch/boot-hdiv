@@ -1,0 +1,13 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Index</title>
+</head>
+<body>
+    <h1>Index</h1>
+    <form th:action="@{/}" method="post" th:object="${name}">
+        <input type="text" th:field="*{firstName}" />
+        <button type="submit">Go</button>
+    </form>
+</body>
+</html>
