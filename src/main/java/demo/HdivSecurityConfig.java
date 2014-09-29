@@ -17,6 +17,8 @@ package demo;
 
 import org.hdiv.config.annotation.EnableHdivWebSecurity;
 import org.hdiv.config.annotation.ExclusionRegistry;
+import org.hdiv.config.annotation.ValidationConfigurer;
+import org.hdiv.config.annotation.builders.SecurityConfigBuilder;
 import org.hdiv.config.annotation.configuration.HdivWebSecurityConfigurerAdapter;
 import org.hdiv.filter.ValidatorFilter;
 import org.hdiv.listener.InitListener;
@@ -38,8 +40,20 @@ public class HdivSecurityConfig extends HdivWebSecurityConfigurerAdapter {
     }
 
     @Override
+    public void configure(SecurityConfigBuilder securityConfigBuilder) {
+
+    	securityConfigBuilder.showErrorPageOnEditableValidation(true);
+    }
+    
+    @Override
     public void addExclusions(ExclusionRegistry registry) {
 
         registry.addUrlExclusions("/").method("GET");
+    }
+    
+    @Override
+    public void configureEditableValidation(ValidationConfigurer validationConfigurer) {
+
+    	validationConfigurer.addValidation(".*");
     }
 }
